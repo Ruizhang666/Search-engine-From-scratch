@@ -1,0 +1,913 @@
+
+
+# COMMENT ON THE PERFORMANCE
+
+To compare the systems' performances, we can just compare the precisions of different systems at a given recall level.
+The higher the precision is, the better the system are performing its job. Therefore, in this project, I will select the 
+best parameters based on the aforementioned criterion. 
+
+1.  For term-weighting scheme, I say the tf-idf works best. I found that for the systems that either use TF or Boolean,
+their precisions are one magnitute lower than that using TF-IDF. The representation of the document is improved as
+the weight took the words' importance into consideration.
+
+2.  For the choice of the stemming, I observe that stemming improve the search results(around 0.02 imrpovement across
+difference recall level). I think it can improve the system because using stemming will enrich the representation of the
+document. 
+
+3.  For the removal of the stop words, I do not observe any significant imrpovement on the performance of the system if
+I remove the stop word.
+
+4. I found the cosine similarity and regional weighting(1,3,4,1) work the best when they combined togther. 
+
+In conclusion, I would suggest the system adapt the following parameters:
+TFIDF+Stemming+Removing_stop_word+Cosine_similarity+regional weighting(1,3,4,1)
+
+
+# QUERY DEMONSTRATION
+
+1. List the top 20 retrieved documents for eries 6, 9 and 22 by their number, title and similarity
+measure, with the “relevant” documents starred.
+
+***Notice that I used cosine similarity here
+
+
+Q6: interest in articl on robot , motion plan particular the geometr and combinatori aspect .
+ we are not interest in the dynam of arm motion .
+returned: [2078(Relevant), 1398, 2176, 695, 242, 2828(Relevant), 1543(Relevent), 1925, 1186, 2230,
+ 2826, 136, 2389, 2836, 605, 1234, 2514, 1365, 2667, 2187]
+
+2078(Relevant)
+on multiprogramming , machine coding , and computer organization
+1398
+on top-to-bottom recognition and left recursion
+2176
+an algorithm for the blocks and cutnodes of a graph
+695
+an automatic data acquisition and inquiry system using disk files
+242
+n-dimensional codes for detecting and correcting multiple errors
+2828(Relevant)
+texture and reflection in computer generated images
+1543(Relevent)
+tele-cupl : a telephone time sharing system
+1925
+description of format , a text-processing program
+1186
+note on an ascii-octal code table ( standards )
+2230
+the reconstruction of binary patterns from their projections
+2826
+a parametric algorithm for drawing pictures of solid objects composed of quadric surfaces
+136
+evaluating numbers expressed as strings of english words
+2389
+a proposal for a computer-based interactive scientific community
+2836
+new upper bounds for selection
+605
+a method for eliminating ambiguity due to signal coincidence in digital design
+1234
+a stochastic approach to the grammatical coding of english
+2514
+minimal event-node network of project precedence relations
+1365
+computer simulation-discussion of the technique and comparison of languages
+2667
+computation of page fault probability from program transition diagram
+2187
+an approach to the optimum design of computer graphics systems
+
+
+
+Q9: secur consider in local network , network oper system , and distribut system .
+returned: [2870(Relevant), 2372(Relevant), 2864, 2945, 3068(Relevant), 2869, 3158(Relevant), 3174, 2388, 3111(Relevant),
+ 2582, 2046, 820, 2949, 3011, 757, 3076, 2969, 1685, 1747]
+
+2870 (Relevant)
+logical analysis of programs
+2372 (Relevant)
+properties of the working-set model
+2864
+verifying properties of parallel programs : an axiomatic approach
+2945
+an alternative to event queues for synchronization in monitors
+3068(Relevant)
+a practical interprocedural data flow analysis algorithm
+2869
+a lattice model of secure information flow
+3158(Relevant)
+further remark on stably updating mean and standard deviation estimates
+3174
+breaking substitution ciphers using a relaxation algorithm
+2388
+preliminary report on a system for general space planning
+3111 (Relevant)
+list processing in real time on a serial computer
+2582
+guidelines for humanizing computerized information systems : a report from stanley house
+2046
+incorporating origin shifts into the qr algorithm for symmetric tridiagonal matrices
+820
+further remarks on sampling a tape file-iii
+2949
+a unifying approach to scheduling
+3011
+the use of an interactive information storage and retrieval system in medical research
+757
+skeletal structure of pert and cpa computer programs
+3076
+can programming be liberated from the von neumann style ? a functional style and its algebra of programs
+2969
+achieving specific accuracy in simulation output analysis
+1685
+computer synthesis of holograms for 3-d display
+1747
+a scheduling philosophy for multiprocessing systems
+
+Q22:i am interest in hidden-lin and hidden-surfac algorithm for cylind , toroid , sphere , and cone . this is a rather special topic in comput graphic .
+returned: [2809, 2925, 2692(Relevant), 266, 2913, 2473(Relevant), 
+2313, 87, 2564(Relevant), 2637(Relevant), 52, 2441, 88, 2638, 2384(Relevant), 122, 2359, 2333, 2845, 2771]
+
+2809
+professionalism in the computing field
+2925
+pagination of b * -trees with variable-length records
+2692(Relevant)
+bivariate interpolation and smooth surface fitting based on local procedures [ e2 ] ( algorithm a474 )
+266
+some proposals for improving the efficiency of algol 60
+2913
+use of the lru stack depth distribution for simulation of paging behavior
+2473 (Relevant)
+difsub for solution of ordinary differential equations ( algorithm c407 )
+2313
+requirements for advanced programming systems for list processing
+87
+an efficient method for generating uniformly distributed points on the surface of an n-dimensional sphere
+2564 (Relevant)
+a gaussian pseudo-random number generator ( algorithm 488 )
+2637 (Relevant)
+hidden-line plotting program ( algorithm r420 )
+52
+recommendations of the share algol committee
+2441
+a sparse matrix package ( algorithm r408 )
+88
+a routine to find the solution of simultaneous linear equations with polynomial coefficients
+2638
+calculation of fourier integrals ( algorithm r418 )
+2384 (Relevant)
+zeros of a complex polynomial [ c2 ] ( algorithm a419 )
+122
+compilation for two computers with neliac
+2359
+a comment on the double-chained tree
+2333
+general random number generator ( algorithm r370 )
+2845
+compressed tries
+2771
+on maintenance of the opportunity list for class-teacher timetable problems
+
+2.  For the top 10 retrieved documents, show the terms on which the retrieval was based (those with
+non-zero weights for both query and retrieved document) along with these weights.
+
+
+Q6:
+2078
+.
+doc_vec 0.00031928480204342275
+query_vec 0.0006385696040868455
+,
+doc_vec 0.002221516978736909
+query_vec 0.00031735956839098697
+on
+doc_vec 0.003424657534246575
+query_vec 0.001141552511415525
+and
+doc_vec 0.001910828025477707
+query_vec 0.0006369426751592356
+1398
+.
+doc_vec 0.0009578544061302683
+query_vec 0.0006385696040868455
+the
+doc_vec 0.0016675931072818232
+query_vec 0.0011117287381878821
+,
+doc_vec 0.0006347191367819739
+query_vec 0.00031735956839098697
+and
+doc_vec 0.001910828025477707
+query_vec 0.0006369426751592356
+in
+doc_vec 0.001402524544179523
+query_vec 0.001402524544179523
+on
+doc_vec 0.003424657534246575
+query_vec 0.001141552511415525
+of
+doc_vec 0.000481000481000481
+query_vec 0.000481000481000481
+2176
+.
+doc_vec 0.002554278416347382
+query_vec 0.0006385696040868455
+the
+doc_vec 0.006114508060033352
+query_vec 0.0011117287381878821
+,
+doc_vec 0.014915899714376388
+query_vec 0.00031735956839098697
+and
+doc_vec 0.0044585987261146496
+query_vec 0.0006369426751592356
+are
+doc_vec 0.0019474196689386564
+query_vec 0.0009737098344693282
+in
+doc_vec 0.0021037868162692847
+query_vec 0.001402524544179523
+on
+doc_vec 0.00228310502283105
+query_vec 0.001141552511415525
+of
+doc_vec 0.005291005291005292
+query_vec 0.000481000481000481
+695
+.
+doc_vec 0.0019157088122605365
+query_vec 0.0006385696040868455
+the
+doc_vec 0.0038910505836575876
+query_vec 0.0011117287381878821
+,
+doc_vec 0.0009520787051729609
+query_vec 0.00031735956839098697
+and
+doc_vec 0.005095541401273885
+query_vec 0.0006369426751592356
+are
+doc_vec 0.0009737098344693282
+query_vec 0.0009737098344693282
+in
+doc_vec 0.0021037868162692847
+query_vec 0.001402524544179523
+on
+doc_vec 0.00228310502283105
+query_vec 0.001141552511415525
+of
+doc_vec 0.000962000962000962
+query_vec 0.000481000481000481
+242
+not
+doc_vec 0.0037313432835820895
+query_vec 0.0037313432835820895
+.
+doc_vec 0.002554278416347382
+query_vec 0.0006385696040868455
+the
+doc_vec 0.006114508060033352
+query_vec 0.0011117287381878821
+,
+doc_vec 0.0025388765471278957
+query_vec 0.00031735956839098697
+and
+doc_vec 0.005095541401273885
+query_vec 0.0006369426751592356
+are
+doc_vec 0.0019474196689386564
+query_vec 0.0009737098344693282
+in
+doc_vec 0.001402524544179523
+query_vec 0.001402524544179523
+on
+doc_vec 0.00228310502283105
+query_vec 0.001141552511415525
+of
+doc_vec 0.002405002405002405
+query_vec 0.000481000481000481
+plan
+doc_vec 0.029411764705882353
+query_vec 0.029411764705882353
+2828
+.
+doc_vec 0.0031928480204342275
+query_vec 0.0006385696040868455
+the
+doc_vec 0.008893829905503057
+query_vec 0.0011117287381878821
+,
+doc_vec 0.004760393525864805
+query_vec 0.00031735956839098697
+and
+doc_vec 0.003821656050955414
+query_vec 0.0006369426751592356
+are
+doc_vec 0.0019474196689386564
+query_vec 0.0009737098344693282
+in
+doc_vec 0.004207573632538569
+query_vec 0.001402524544179523
+of
+doc_vec 0.005772005772005772
+query_vec 0.000481000481000481
+1543
+.
+doc_vec 0.0022349936143039595
+query_vec 0.0006385696040868455
+the
+doc_vec 0.0033351862145636463
+query_vec 0.0011117287381878821
+,
+doc_vec 0.0019041574103459218
+query_vec 0.00031735956839098697
+in
+doc_vec 0.001402524544179523
+query_vec 0.001402524544179523
+on
+doc_vec 0.001141552511415525
+query_vec 0.001141552511415525
+of
+doc_vec 0.000962000962000962
+query_vec 0.000481000481000481
+1925
+.
+doc_vec 0.001277139208173691
+query_vec 0.0006385696040868455
+the
+doc_vec 0.0011117287381878821
+query_vec 0.0011117287381878821
+,
+doc_vec 0.013011742304030465
+query_vec 0.00031735956839098697
+and
+doc_vec 0.0012738853503184713
+query_vec 0.0006369426751592356
+in
+doc_vec 0.0007012622720897616
+query_vec 0.001402524544179523
+on
+doc_vec 0.001141552511415525
+query_vec 0.001141552511415525
+of
+doc_vec 0.002886002886002886
+query_vec 0.000481000481000481
+1186
+.
+doc_vec 0.00031928480204342275
+query_vec 0.0006385696040868455
+,
+doc_vec 0.00031735956839098697
+query_vec 0.00031735956839098697
+on
+doc_vec 0.003424657534246575
+query_vec 0.001141552511415525
+2230
+.
+doc_vec 0.001277139208173691
+query_vec 0.0006385696040868455
+the
+doc_vec 0.0038910505836575876
+query_vec 0.0011117287381878821
+,
+doc_vec 0.006347191367819739
+query_vec 0.00031735956839098697
+and
+doc_vec 0.001910828025477707
+query_vec 0.0006369426751592356
+are
+doc_vec 0.0029211295034079843
+query_vec 0.0009737098344693282
+in
+doc_vec 0.0021037868162692847
+query_vec 0.001402524544179523
+we
+doc_vec 0.03636363636363636
+query_vec 0.01818181818181818
+of
+doc_vec 0.002886002886002886
+query_vec 0.000481000481000481
+
+Q9:2870
+.
+doc_vec 0.0022349936143039595
+query_vec 0.00031928480204342275
+,
+doc_vec 0.009203427483338623
+query_vec 0.0006347191367819739
+and
+doc_vec 0.0012738853503184713
+query_vec 0.0006369426751592356
+in
+doc_vec 0.001402524544179523
+query_vec 0.0007012622720897616
+system
+doc_vec 0.0014044943820224719
+query_vec 0.0028089887640449437
+2372
+.
+doc_vec 0.002554278416347382
+query_vec 0.00031928480204342275
+,
+doc_vec 0.007616629641383687
+query_vec 0.0006347191367819739
+distribut
+doc_vec 0.017699115044247787
+query_vec 0.008849557522123894
+and
+doc_vec 0.0012738853503184713
+query_vec 0.0006369426751592356
+in
+doc_vec 0.0007012622720897616
+query_vec 0.0007012622720897616
+2864
+.
+doc_vec 0.002554278416347382
+query_vec 0.00031928480204342275
+,
+doc_vec 0.00825134877816566
+query_vec 0.0006347191367819739
+and
+doc_vec 0.0012738853503184713
+query_vec 0.0006369426751592356
+in
+doc_vec 0.0021037868162692847
+query_vec 0.0007012622720897616
+system
+doc_vec 0.0014044943820224719
+query_vec 0.0028089887640449437
+2945
+.
+doc_vec 0.0015964240102171138
+query_vec 0.00031928480204342275
+,
+doc_vec 0.007616629641383687
+query_vec 0.0006347191367819739
+and
+doc_vec 0.0025477707006369425
+query_vec 0.0006369426751592356
+in
+doc_vec 0.0035063113604488078
+query_vec 0.0007012622720897616
+system
+doc_vec 0.0056179775280898875
+query_vec 0.0028089887640449437
+oper
+doc_vec 0.013440860215053765
+query_vec 0.002688172043010753
+3068
+.
+doc_vec 0.0022349936143039595
+query_vec 0.00031928480204342275
+,
+doc_vec 0.009203427483338623
+query_vec 0.0006347191367819739
+in
+doc_vec 0.002805049088359046
+query_vec 0.0007012622720897616
+and
+doc_vec 0.003184713375796178
+query_vec 0.0006369426751592356
+2869
+.
+doc_vec 0.0022349936143039595
+query_vec 0.00031928480204342275
+,
+doc_vec 0.0072992700729927005
+query_vec 0.0006347191367819739
+and
+doc_vec 0.001910828025477707
+query_vec 0.0006369426751592356
+in
+doc_vec 0.0007012622720897616
+query_vec 0.0007012622720897616
+system
+doc_vec 0.004213483146067416
+query_vec 0.0028089887640449437
+secur
+doc_vec 0.6333333333333333
+query_vec 0.03333333333333333
+3158
+.
+doc_vec 0.00031928480204342275
+query_vec 0.00031928480204342275
+,
+doc_vec 0.0015867978419549348
+query_vec 0.0006347191367819739
+and
+doc_vec 0.001910828025477707
+query_vec 0.0006369426751592356
+3174
+.
+doc_vec 0.002554278416347382
+query_vec 0.00031928480204342275
+,
+doc_vec 0.0050777530942557915
+query_vec 0.0006347191367819739
+in
+doc_vec 0.002805049088359046
+query_vec 0.0007012622720897616
+and
+doc_vec 0.0006369426751592356
+query_vec 0.0006369426751592356
+2388
+.
+doc_vec 0.0015964240102171138
+query_vec 0.00031928480204342275
+,
+doc_vec 0.004760393525864805
+query_vec 0.0006347191367819739
+and
+doc_vec 0.003821656050955414
+query_vec 0.0006369426751592356
+in
+doc_vec 0.0007012622720897616
+query_vec 0.0007012622720897616
+system
+doc_vec 0.004213483146067416
+query_vec 0.0028089887640449437
+3111
+.
+doc_vec 0.003831417624521073
+query_vec 0.00031928480204342275
+,
+doc_vec 0.018406854966677245
+query_vec 0.0006347191367819739
+and
+doc_vec 0.0044585987261146496
+query_vec 0.0006369426751592356
+in
+doc_vec 0.0035063113604488078
+query_vec 0.0007012622720897616
+system
+doc_vec 0.007022471910112359
+query_vec 0.0028089887640449437
+oper
+doc_vec 0.002688172043010753
+query_vec 0.002688172043010753
+
+Q22:
+2809
+.
+doc_vec 0.002554278416347382
+query_vec 0.0006385696040868455
+,
+doc_vec 0.010790225325293556
+query_vec 0.0009520787051729609
+and
+doc_vec 0.005732484076433121
+query_vec 0.0012738853503184713
+rather
+doc_vec 0.03571428571428571
+query_vec 0.017857142857142856
+is
+doc_vec 0.002871500358937545
+query_vec 0.0007178750897343862
+in
+doc_vec 0.002805049088359046
+query_vec 0.001402524544179523
+comput
+doc_vec 0.006586169045005488
+query_vec 0.0010976948408342481
+a
+doc_vec 0.0015584415584415584
+query_vec 0.0005194805194805195
+2925
+.
+doc_vec 0.001277139208173691
+query_vec 0.0006385696040868455
+,
+doc_vec 0.006664550936210726
+query_vec 0.0009520787051729609
+and
+doc_vec 0.0012738853503184713
+query_vec 0.0012738853503184713
+is
+doc_vec 0.0014357501794687725
+query_vec 0.0007178750897343862
+in
+doc_vec 0.001402524544179523
+query_vec 0.001402524544179523
+for
+doc_vec 0.0006622516556291391
+query_vec 0.0006622516556291391
+this
+doc_vec 0.0025031289111389237
+query_vec 0.0012515644555694619
+a
+doc_vec 0.001038961038961039
+query_vec 0.0005194805194805195
+2692
+.
+doc_vec 0.00031928480204342275
+query_vec 0.0006385696040868455
+,
+doc_vec 0.005395112662646778
+query_vec 0.0009520787051729609
+algorithm
+doc_vec 0.002250562640660165
+query_vec 0.0007501875468867217
+and
+doc_vec 0.001910828025477707
+query_vec 0.0012738853503184713
+266
+.
+doc_vec 0.00031928480204342275
+query_vec 0.0006385696040868455
+for
+doc_vec 0.001986754966887417
+query_vec 0.0006622516556291391
+,
+doc_vec 0.00031735956839098697
+query_vec 0.0009520787051729609
+2913
+.
+doc_vec 0.0019157088122605365
+query_vec 0.0006385696040868455
+,
+doc_vec 0.007616629641383687
+query_vec 0.0009520787051729609
+and
+doc_vec 0.0006369426751592356
+query_vec 0.0012738853503184713
+comput
+doc_vec 0.006586169045005488
+query_vec 0.0010976948408342481
+for
+doc_vec 0.0033112582781456954
+query_vec 0.0006622516556291391
+
+
+a
+doc_vec 0.001038961038961039
+query_vec 0.0005194805194805195
+2473
+.
+doc_vec 0.00031928480204342275
+query_vec 0.0006385696040868455
+for
+doc_vec 0.001986754966887417
+query_vec 0.0006622516556291391
+,
+doc_vec 0.0028562361155188825
+query_vec 0.0009520787051729609
+algorithm
+doc_vec 0.002250562640660165
+query_vec 0.0007501875468867217
+2313
+.
+doc_vec 0.0035121328224776505
+query_vec 0.0006385696040868455
+,
+doc_vec 0.01650269755633132
+query_vec 0.0009520787051729609
+and
+doc_vec 0.005095541401273885
+query_vec 0.0012738853503184713
+is
+doc_vec 0.0007178750897343862
+query_vec 0.0007178750897343862
+rather
+doc_vec 0.017857142857142856
+query_vec 0.017857142857142856
+in
+doc_vec 0.001402524544179523
+query_vec 0.001402524544179523
+for
+doc_vec 0.005298013245033113
+query_vec 0.0006622516556291391
+this
+doc_vec 0.0025031289111389237
+query_vec 0.0012515644555694619
+algorithm
+doc_vec 0.0007501875468867217
+query_vec 0.0007501875468867217
+a
+doc_vec 0.0025974025974025974
+query_vec 0.0005194805194805195
+87
+.
+doc_vec 0.0006385696040868455
+query_vec 0.0006385696040868455
+for
+doc_vec 0.001986754966887417
+query_vec 0.0006622516556291391
+,
+doc_vec 0.0006347191367819739
+query_vec 0.0009520787051729609
+sphere
+doc_vec 0.42857142857142855
+query_vec 0.14285714285714285
+2564
+.
+doc_vec 0.00031928480204342275
+query_vec 0.0006385696040868455
+,
+doc_vec 0.00412567438908283
+query_vec 0.0009520787051729609
+algorithm
+doc_vec 0.002250562640660165
+query_vec 0.0007501875468867217
+a
+doc_vec 0.0015584415584415584
+query_vec 0.0005194805194805195
+2637
+.
+doc_vec 0.00031928480204342275
+query_vec 0.0006385696040868455
+,
+doc_vec 0.00031735956839098697
+query_vec 0.0009520787051729609
+algorithm
+doc_vec 0.002250562640660165
+query_vec 0.0007501875468867217
+hidden-lin
+doc_vec 0.5
+query_vec 0.16666666666666666
+
+3. List the top 20 documents that are most similar to Documents 239, 1236 and 2740, giving number,
+title and similarity measure
+
+Doc 239:
+1508
+title:  recorded magnetic tape for information interchange ( 200 cpi , nrzi ) ( proposed usa standard )
+similarity_measure: COSINE
+957
+title:  a case of too much precision
+similarity_measure: COSINE
+1971
+title:  a nonrecursive list compacting algorithm
+similarity_measure: COSINE
+1249
+title:  graphic symbols for problem definition and analysis-a standards working paper
+similarity_measure: COSINE
+1509
+title:  finding a solution of n functional equations in n unknown ( algorithm 314 [ c5 ] )
+similarity_measure: COSINE
+316
+title:  on the approximation of curves by line segments using dynamic programming
+similarity_measure: COSINE
+1442
+title:  a method for finding the least squares estimate of the intersection point of two helices in space
+similarity_measure: COSINE
+2617
+title:  a new solution of dijkstra 's concurrent programming problem
+similarity_measure: COSINE
+752
+title:  a procedure for converting logic table conditions into an efficient sequence of test instructions
+similarity_measure: COSINE
+1970
+title:  recorded magnetic tape for information interchange ( 1600 cpi , phase encoded ) * ( proposed american national standard )
+similarity_measure: COSINE
+261
+title:  map
+similarity_measure: COSINE
+694
+title:  use of the disk file on stretch
+similarity_measure: COSINE
+411
+title:  recursive processes and algol translation
+similarity_measure: COSINE
+1035
+title:  remark on further generalization of algol
+similarity_measure: COSINE
+400
+title:  allocation of storage for arrays in algol 60
+similarity_measure: COSINE
+1064
+title:  bit sequencing of the american standard code for information interchange ( ascii ) in serial-by-bit data transmission ( proposed american standard )
+similarity_measure: COSINE
+408
+title:  cl-1 , an environment for a compiler
+similarity_measure: COSINE
+58
+title:  survey of progress and trend of development and use of automatic data processing in business and management control systems of the federal government , as of december 1957-iii
+similarity_measure: COSINE
+2413
+title:  arithmetic overa finite field [ a1 ] ( algorithm a469 )
+similarity_measure: COSINE
+
+Doc 1236:
+1237
+title:  a technique for integrated reports from a multi-run system
+similarity_measure: COSINE
+3113
+title:  a technique for isolating differences between files
+similarity_measure: COSINE
+2691
+title:  reentrant polygon clipping
+similarity_measure: COSINE
+1665
+title:  solution of linear programs in 0-1 variables by implicit enumeration ( algorithm 341 [ h ] )
+similarity_measure: COSINE
+2221
+title:  comment on london 's certification of algorithm 245
+similarity_measure: COSINE
+1172
+title:  the performance of a system for automatic segmentation of programs within an algol compiler ( gier algol )
+similarity_measure: COSINE
+1235
+title:  the smart automatic document retrieval system-an illustration
+similarity_measure: COSINE
+1385
+title:  symbolic factoring of polynomials in several variables
+similarity_measure: COSINE
+3034
+title:  a strategic planning methodology for the computing effort in higher education : an empirical evaluation
+similarity_measure: COSINE
+2598
+title:  first order approximation to the optimum checkpoint interval
+similarity_measure: COSINE
+2150
+title:  user program measurement in a time-shared environment
+similarity_measure: COSINE
+3035
+title:  the selection of optimal tab settings
+similarity_measure: COSINE
+1327
+title:  further remarks on reducing truncation errors
+similarity_measure: COSINE
+2390
+title:  unitary symmetric polynomials [ z ] ( algorithm r391 )
+similarity_measure: COSINE
+2053
+title:  on the feasibility of voice input to an on-line computer processing system
+similarity_measure: COSINE
+2848
+title:  ethernet : distributed packet switching for local computer networks
+similarity_measure: COSINE
+2263
+title:  derived semantics for some programming language constructs
+similarity_measure: COSINE
+2153
+title:  clarification of fortran standards-second report
+similarity_measure: COSINE
+2220
+title:  comment on the conversion of decision tables to computer programs
+similarity_measure: COSINE
+2616
+title:  a note on subexpression ordering in the evaluation of arithmetic expressions
+similarity_measure: COSINE
+
+Doc 2740:
+2741
+title:  improved event-scanning mechanisms for discrete event simulation
+similarity_measure: COSINE
+2995
+title:  transient-free working-set statistics
+similarity_measure: COSINE
+2957
+title:  abstract data types and the development of data structures
+similarity_measure: COSINE
+2277
+title:  on foster 's information storage and retrieval using avl trees
+similarity_measure: COSINE
+1636
+title:  problems in the statistical analysis of simulation experiments : the comparison of means and the length of sample records
+similarity_measure: COSINE
+3089
+title:  automated welfare client-tracking and service integration : the political economy of computing
+similarity_measure: COSINE
+3147
+title:  high level programming for distributed computing
+similarity_measure: COSINE
+1708
+title:  a modification of efroymson 's technique for stepwise regression analysis
+similarity_measure: COSINE
+2314
+title:  the production of better mathematical software
+similarity_measure: COSINE
+2606
+title:  a problem-list of issues concerning computers and public policy
+similarity_measure: COSINE
+1705
+title:  champ-character manipulation procedures
+similarity_measure: COSINE
+2068
+title:  comments on a paper by wallace and mason
+similarity_measure: COSINE
+2079
+title:  the nucleus of a multiprogramming system
+similarity_measure: COSINE
+1964
+title:  correction to `` logical '' arithmetic on computers with two 's complement binary arithmetic
+similarity_measure: COSINE
+2247
+title:  a new method for the solution of the cauchy problem for parabolic equations
+similarity_measure: COSINE
+2341
+title:  interference between communicating parallel processes
+similarity_measure: COSINE
+1951
+title:  index by subject to algorithms , 1970
+similarity_measure: COSINE
+3067
+title:  a model for verification of data security in operating systems
+similarity_measure: COSINE
+3136
+title:  a methodology for the design of distributed information systems
+similarity_measure: COSINE
+1721
+title:  methods of convergence improvement for some improper integrals
+similarity_measure: COSINE
